@@ -1,13 +1,5 @@
 <script lang="ts">
-	let dark = $state(false);
-
-	function toggleTheme() {
-		dark = !dark;
-		document.documentElement.dataset.theme = dark ? 'dark' : 'light';
-		try {
-			localStorage.setItem('theme', dark ? 'dark' : 'light');
-		} catch {}
-	}
+	import ThemeToggle from '#lib/components/layout/ThemeToggle.svelte';
 
 	const colors = [
 		['bg', 'bg-bg'],
@@ -39,43 +31,45 @@
 
 <header class="container-page flex items-center justify-between py-6">
 	<span class="text-small font-medium">Design system</span>
-	<button class="chip gap-2 hover:text-ink" onclick={toggleTheme}>{dark ? 'Light' : 'Dark'}</button>
+	<ThemeToggle />
 </header>
 
-<section class="section container-page">
-	<p class="eyebrow mb-10"><span class="text-accent">01</span> &nbsp;/ Colors</p>
+<section class="container-page section">
+	<p class="mb-10 eyebrow"><span class="text-accent">01</span> &nbsp;/ Colors</p>
 	<div class="grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-6">
 		{#each colors as [name, cls] (name)}
 			<div>
 				<div class="h-20 border border-line {cls}"></div>
-				<p class="eyebrow mt-2">{name}</p>
+				<p class="mt-2 eyebrow">{name}</p>
 			</div>
 		{/each}
 	</div>
 </section>
 
-<section class="section bg-surface">
+<section class="bg-surface section">
 	<div class="container-page space-y-12">
 		<p class="eyebrow"><span class="text-accent">02</span> &nbsp;/ Typography</p>
 		{#each types as [name, cls, sample] (name)}
 			<div class="border-t border-line pt-6">
-				<p class="eyebrow mb-4">{name}</p>
+				<p class="mb-4 eyebrow">{name}</p>
 				<p class="font-display font-medium {cls}">{sample}</p>
 			</div>
 		{/each}
 		<div class="grid gap-8 border-t border-line pt-6 md:grid-cols-3">
 			<div>
-				<p class="eyebrow mb-4">lead</p>
+				<p class="mb-4 eyebrow">lead</p>
 				<p class="text-lead text-ink-muted">
-					I'm <strong>Your name</strong> — a JavaScript developer making the web feel more considered.
+					I'm <strong>Andrii</strong> — a JavaScript developer making the web feel more considered.
 				</p>
 			</div>
 			<div>
-				<p class="eyebrow mb-4">small</p>
-				<p class="text-small text-ink-muted">A sentence about the work, the team, or the problems you solve.</p>
+				<p class="mb-4 eyebrow">small</p>
+				<p class="text-small text-ink-muted">
+					A sentence about the work, the team, or the problems you solve.
+				</p>
 			</div>
 			<div>
-				<p class="eyebrow mb-4">label / chips</p>
+				<p class="mb-4 eyebrow">label / chips</p>
 				<div class="flex flex-wrap gap-2">
 					<span class="chip">JavaScript</span>
 					<span class="chip">Animation</span>
@@ -86,29 +80,33 @@
 	</div>
 </section>
 
-<section class="section container-page">
-	<p class="eyebrow mb-10"><span class="text-accent">03</span> &nbsp;/ Cards & motion</p>
+<section class="container-page section">
+	<p class="mb-10 eyebrow"><span class="text-accent">03</span> &nbsp;/ Cards & motion</p>
 	<div class="grid gap-4 md:grid-cols-2">
 		<article class="relative rounded-card bg-coral p-8 text-on-card md:p-10">
 			<p class="eyebrow text-on-card/70">Creative development · GSAP · React</p>
-			<a href="#top" class="icon-button absolute top-6 right-6" aria-label="Open project">↗</a>
+			<a href="#top" class="absolute top-6 right-6 icon-button" aria-label="Open project">↗</a>
 			<h3 class="mt-24 text-h4 text-on-card">Project title</h3>
 			<p class="mt-2 max-w-sm text-small text-on-card/70">A moment the interface comes alive.</p>
 		</article>
 		<article class="relative rounded-card bg-sky p-8 text-on-card md:p-10">
 			<p class="eyebrow text-on-card/70">Interaction design · Canvas</p>
-			<span class="absolute top-6 right-6 size-24 rounded-full border border-on-card/20 animate-orbit">
+			<span
+				class="absolute top-6 right-6 size-24 animate-orbit rounded-full border border-on-card/20"
+			>
 				<span class="absolute -top-1.5 left-1/2 size-3 rounded-full bg-accent"></span>
 			</span>
 			<h3 class="mt-24 text-h4 text-on-card">Project title</h3>
 			<p class="mt-2 flex items-center gap-2 eyebrow text-on-card/70">
-				<span class="size-2 rounded-full bg-success text-success animate-pulse-dot"></span>
+				<span class="size-2 animate-pulse-dot rounded-full bg-success text-success"></span>
 				Open to what's next
 			</p>
 		</article>
 	</div>
 	<div class="mt-12 overflow-hidden border-y border-line py-4">
-		<div class="flex w-max animate-marquee gap-12 font-mono text-label tracking-label text-accent uppercase">
+		<div
+			class="flex w-max animate-marquee gap-12 font-mono text-label tracking-label text-accent uppercase"
+		>
 			{#each [0, 1] as copy (copy)}
 				{#each ['JavaScript', 'Animation with intent', 'Interaction that feels right'] as word (word)}
 					<span aria-hidden={copy === 1}>✦ &nbsp;{word}</span>

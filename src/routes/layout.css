@@ -1,2 +1,236 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
+
+/* Theme switching: <html data-theme="dark"> */
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
+/* ---------------------------------------------------------------------------
+ * Raw palette — semantic values swap per theme, Tailwind reads them below
+ * ------------------------------------------------------------------------- */
+:root {
+	--bg: #f0f0e8;
+	--surface: #e7e8df;
+	--ink: #20251f;
+	--ink-muted: #64695f;
+	--ink-subtle: #8e9391;
+	--line: #c9cac2;
+	--accent: #b3402f;
+	--accent-soft: #e8b5aa;
+	--success: #6fa35a;
+
+	color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+	--bg: #141713;
+	--surface: #1c201b;
+	--ink: #ecece4;
+	--ink-muted: #a3a79c;
+	--ink-subtle: #737870;
+	--line: #343a32;
+	--accent: #e0644e;
+	--accent-soft: #5a2a22;
+	--success: #8fc37a;
+
+	color-scheme: dark;
+}
+
+/* ---------------------------------------------------------------------------
+ * Tailwind tokens
+ * ------------------------------------------------------------------------- */
+@theme inline {
+	/* Semantic colors → bg-bg, text-ink, border-line, text-accent … */
+	--color-bg: var(--bg);
+	--color-surface: var(--surface);
+	--color-ink: var(--ink);
+	--color-ink-muted: var(--ink-muted);
+	--color-ink-subtle: var(--ink-subtle);
+	--color-line: var(--line);
+	--color-accent: var(--accent);
+	--color-accent-soft: var(--accent-soft);
+	--color-success: var(--success);
+}
+
+@theme {
+	/* Project card colors — same in both themes, always paired with dark ink */
+	--color-lime: #d8ef70;
+	--color-coral: #f0a48f;
+	--color-sky: #a7c6d4;
+	--color-on-card: #20251f;
+
+	/* Fonts */
+	--font-display: 'Geist', 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+	--font-sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+	--font-mono: 'DM Mono', ui-monospace, 'SFMono-Regular', monospace;
+
+	/* Type scale (fluid display sizes, fixed text sizes) */
+	--text-hero: clamp(3.5rem, 9.5vw, 9.5rem); /* "I make motion engineer feel alive." */
+	--text-hero--line-height: 0.95;
+	--text-hero--letter-spacing: -0.05em;
+
+	--text-h1: clamp(3rem, 7vw, 7.5rem); /* "Have a good one in mind?" */
+	--text-h1--line-height: 0.95;
+	--text-h1--letter-spacing: -0.045em;
+
+	--text-h2: clamp(2.5rem, 5.5vw, 5.75rem); /* "In good company." / "Made to move." */
+	--text-h2--line-height: 1;
+	--text-h2--letter-spacing: -0.04em;
+
+	--text-h3: clamp(2rem, 4.2vw, 4.5rem); /* Featured project title */
+	--text-h3--line-height: 1;
+	--text-h3--letter-spacing: -0.04em;
+
+	--text-h4: clamp(1.75rem, 3.2vw, 3.25rem); /* "Code with a sense of timing." / card titles */
+	--text-h4--line-height: 1.1;
+	--text-h4--letter-spacing: -0.035em;
+
+	--text-lead: 1.1875rem; /* 19px — about paragraphs */
+	--text-lead--line-height: 1.75;
+
+	--text-body: 1rem;
+	--text-body--line-height: 1.6;
+
+	--text-small: 0.875rem; /* 14px — nav, captions, row details */
+	--text-small--line-height: 1.55;
+
+	--text-label: 0.6875rem; /* 11px — mono eyebrows, chips, meta */
+	--text-label--line-height: 1.4;
+	--text-label--letter-spacing: 0.14em;
+
+	/* Tracking helpers */
+	--tracking-display: -0.045em;
+	--tracking-label: 0.14em;
+
+	/* Layout */
+	--container-page: 82rem;
+	--spacing-gutter: clamp(1.25rem, 4vw, 2.5rem);
+	--spacing-section: clamp(6rem, 12vw, 11rem);
+
+	/* Radius — cards are square, chips & icon buttons are pills */
+	--radius-card: 0;
+	--radius-pill: 9999px;
+
+	/* Motion */
+	--ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+	--ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+	--ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+	--ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+	--animate-marquee: marquee 40s linear infinite;
+	--animate-orbit: orbit 24s linear infinite;
+	--animate-pulse-dot: pulse-dot 2.4s var(--ease-out-quart) infinite;
+
+	@keyframes marquee {
+		from {
+			transform: translateX(0);
+		}
+		to {
+			transform: translateX(-50%);
+		}
+	}
+
+	@keyframes orbit {
+		to {
+			transform: rotate(360deg);
+		}
+	}
+
+	@keyframes pulse-dot {
+		0%,
+		100% {
+			box-shadow: 0 0 0 0 color-mix(in oklab, currentColor 35%, transparent);
+		}
+		50% {
+			box-shadow: 0 0 0 0.5rem transparent;
+		}
+	}
+}
+
+/* Durations — plain vars, use as duration-(--duration-slow) */
+:root {
+	--duration-fast: 150ms;
+	--duration-base: 300ms;
+	--duration-slow: 600ms;
+	--duration-slower: 1000ms;
+}
+
+/* ---------------------------------------------------------------------------
+ * Base
+ * ------------------------------------------------------------------------- */
+@layer base {
+	html {
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		text-rendering: optimizeLegibility;
+	}
+
+	body {
+		@apply bg-bg font-sans text-body text-ink;
+		transition:
+			background-color var(--duration-base) var(--ease-out-quart),
+			color var(--duration-base) var(--ease-out-quart);
+	}
+
+	h1,
+	h2,
+	h3,
+	h4 {
+		@apply font-display font-medium text-ink;
+	}
+
+	strong {
+		@apply font-semibold text-ink;
+	}
+
+	hr {
+		@apply border-line;
+	}
+
+	::selection {
+		@apply bg-accent text-bg;
+	}
+
+	:focus-visible {
+		@apply rounded-sm outline-2 outline-offset-4 outline-ink;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		*,
+		*::before,
+		*::after {
+			animation-duration: 0.01ms !important;
+			animation-iteration-count: 1 !important;
+			transition-duration: 0.01ms !important;
+			scroll-behavior: auto !important;
+		}
+	}
+}
+
+/* ---------------------------------------------------------------------------
+ * Utilities — recurring patterns from the design
+ * ------------------------------------------------------------------------- */
+
+/* Centered page column with side gutters */
+@utility container-page {
+	@apply mx-auto w-full max-w-(--container-page) px-gutter;
+}
+
+/* Vertical rhythm between sections */
+@utility section {
+	@apply py-section;
+}
+
+/* Mono uppercase label: "01 / A LITTLE ABOUT THE PRACTICE", "2023 — NOW" */
+@utility eyebrow {
+	@apply font-mono text-label text-ink-muted uppercase;
+}
+
+/* Outline pill: skill tags, theme toggle */
+@utility chip {
+	@apply inline-flex items-center rounded-pill border border-line px-3.5 py-1.5 font-mono text-label tracking-normal text-ink-muted;
+}
+
+/* Round outline icon button: ↓ scroll, ↗ project link */
+@utility icon-button {
+	@apply inline-grid size-10 place-items-center rounded-pill border border-current/30 transition-colors duration-(--duration-base) ease-out-quart hover:bg-ink hover:text-bg;
+}

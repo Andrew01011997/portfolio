@@ -1,6 +1,4 @@
 <script lang="ts">
-	import ThemeToggle from '#lib/components/layout/ThemeToggle.svelte';
-
 	const colors = [
 		['bg', 'bg-bg'],
 		['surface', 'bg-surface'],
@@ -29,10 +27,7 @@
 	<title>Design system</title>
 </svelte:head>
 
-<header class="container-page flex items-center justify-between py-6">
-	<span class="text-small font-medium">Design system</span>
-	<ThemeToggle />
-</header>
+<h1 class="container-page pt-16 text-h3">Design system</h1>
 
 <section class="container-page section">
 	<p class="mb-10 eyebrow"><span class="text-accent">01</span> &nbsp;/ Colors</p>

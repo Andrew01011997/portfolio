@@ -1,22 +1,23 @@
-import type { NavLink } from '#lib/types.js';
+import { resolve } from '$app/paths';
+import type { ExternalLink, NavLink } from '#lib/types.js';
 
 export const site = {
-	name: 'Andrii',
-	role: 'JavaScript developer',
+	name: 'Andrii Strelchenko',
+	shortName: 'Andrii',
+	role: 'Senior Frontend Engineer',
 	yearsOfExperience: 7,
-	status: 'Independent by nature · Open to what’s next',
-	email: 'hello@example.com',
+	status: 'Senior Frontend Engineer · Open to new roles',
+	email: 'andrew01.01.1997@gmail.com',
 	description:
-		'JavaScript developer building expressive interfaces where the details move with purpose.'
+		'Senior Frontend Engineer with 7 years in React and TypeScript — scalable frontend architecture, data-heavy interfaces and AI-powered product features.'
 };
 
 export const nav: NavLink[] = [
-	{ label: 'About', href: '/#about' },
-	{ label: 'Work', href: '/#work' },
-	{ label: 'Contact', href: '/#contact' }
+	{ label: 'About', href: resolve('/#about') },
+	{ label: 'Work', href: resolve('/#work') },
+	{ label: 'Contact', href: resolve('/#contact') }
 ];
 
-export const socials: NavLink[] = [
-	{ label: 'GitHub', href: 'https://github.com/' },
-	{ label: 'LinkedIn', href: 'https://www.linkedin.com/' }
+export const socials: ExternalLink[] = [
+	{ label: 'LinkedIn', href: 'https://www.linkedin.com/in/andrii-strelchenko' }
 ];

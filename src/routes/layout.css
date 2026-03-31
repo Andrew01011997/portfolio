@@ -64,7 +64,9 @@
 	--font-mono: 'DM Mono', ui-monospace, 'SFMono-Regular', monospace;
 
 	/* Type scale (fluid display sizes, fixed text sizes) */
-	--text-hero: clamp(3.5rem, 9.5vw, 9.5rem); /* "I make motion engineer feel alive." */
+	/* "I build complex interfaces that feel simple." — the longest phrase is ~8.4em wide,
+	   so the max must stay under (82rem container − gutters) / 8.4 ≈ 147px */
+	--text-hero: clamp(2.25rem, 10vw, 8.75rem);
 	--text-hero--line-height: 0.95;
 	--text-hero--letter-spacing: -0.05em;
 

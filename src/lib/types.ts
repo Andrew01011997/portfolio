@@ -26,6 +26,18 @@ export interface Project {
 	metrics: Metric[];
 }
 
+/** Smaller public project with a live URL — no case study page */
+export interface LiveProject {
+	title: string;
+	/** What it is, in a few words: "Website audit SaaS" */
+	kind: string;
+	url: string;
+	scope: 'Frontend' | 'Full-stack';
+	description: string;
+	/** Screenshot imported from #lib/assets/projects */
+	image: string;
+}
+
 export interface Experience {
 	period: string;
 	company: string;

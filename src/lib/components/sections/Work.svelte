@@ -1,9 +1,10 @@
 <script lang="ts">
-	import { reveal } from '#lib/attachments/reveal.js';
+	import { resolve } from '$app/paths';
 	import { projects } from '#lib/data/projects.js';
-	import { stagger } from '#lib/motion/index.js';
-	import ProjectCard from '#lib/components/ui/ProjectCard.svelte';
+	import ProjectGrid from '#lib/components/ui/ProjectGrid.svelte';
 	import SectionHeading from '#lib/components/ui/SectionHeading.svelte';
+
+	const HOME_LIMIT = 3;
 </script>
 
 <section id="work" class="scroll-mt-16 bg-surface section">
@@ -16,15 +17,26 @@
 			Built to<br />scale.
 		</SectionHeading>
 
-		<div class="mt-16 grid gap-4 md:grid-cols-2">
-			{#each projects as project, i (project.slug)}
-				<div
-					class={project.featured ? 'md:col-span-2' : ''}
-					{@attach reveal({ delay: stagger(i % 2) })}
-				>
-					<ProjectCard {project} index={i} total={projects.length} />
-				</div>
-			{/each}
+		<div class="mt-16">
+			<ProjectGrid projects={projects.slice(0, HOME_LIMIT)} />
 		</div>
+
+		<a
+			href={resolve('/work')}
+			class="group mt-10 flex items-center justify-between gap-6 border-y border-line py-6"
+		>
+			<span class="font-display text-h4 font-medium transition-colors group-hover:text-accent">
+				All work
+			</span>
+			<span class="flex items-center gap-4">
+				<span class="hidden eyebrow sm:inline">
+					{projects.length} case studies · live projects
+				</span>
+				<span
+					class="icon-button transition-transform duration-(--duration-base) ease-spring group-hover:translate-x-1"
+					aria-hidden="true">→</span
+				>
+			</span>
+		</a>
 	</div>
 </section>

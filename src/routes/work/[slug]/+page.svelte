@@ -22,7 +22,7 @@
 	<header class="{cardBackground[project.color]} text-on-card">
 		<div class="container-page pt-12 pb-16 md:pb-24">
 			<a
-				href={resolve('/#work')}
+				href={resolve('/work')}
 				class="eyebrow text-on-card/70 transition-colors hover:text-on-card"
 			>
 				← All work

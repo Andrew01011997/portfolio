@@ -52,7 +52,7 @@ export const heroPhrases = [
 
 export const nav: NavLink[] = [
 	{ label: 'About', href: resolve('/#about') },
-	{ label: 'Work', href: resolve('/#work') },
+	{ label: 'Work', href: resolve('/work') },
 	{ label: 'Contact', href: resolve('/#contact') }
 ];
 

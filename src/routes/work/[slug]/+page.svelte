@@ -3,7 +3,7 @@
 	import { reveal } from '#lib/attachments/reveal.js';
 	import { projects } from '#lib/data/projects.js';
 	import { site } from '#lib/data/site.js';
-	import type { CardColor } from '#lib/types.js';
+	import { cardBackground } from '#lib/utils/index.js';
 	import type { PageProps } from './$types';
 
 	let { data }: PageProps = $props();
@@ -11,12 +11,6 @@
 	const next = $derived(
 		projects[(projects.findIndex(({ slug }) => slug === project.slug) + 1) % projects.length]
 	);
-
-	const background: Record<CardColor, string> = {
-		lime: 'bg-lime',
-		coral: 'bg-coral',
-		sky: 'bg-sky'
-	};
 </script>
 
 <svelte:head>
@@ -25,7 +19,7 @@
 </svelte:head>
 
 <article>
-	<header class="{background[project.color]} text-on-card">
+	<header class="{cardBackground[project.color]} text-on-card">
 		<div class="container-page pt-12 pb-16 md:pb-24">
 			<a
 				href={resolve('/#work')}

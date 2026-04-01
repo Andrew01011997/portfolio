@@ -84,6 +84,54 @@ export const projects: Project[] = [
 			{ value: '90%+', label: 'automated test coverage' },
 			{ value: 'Multi', label: 'products built on one component library' }
 		]
+	},
+	{
+		slug: 'streaming-payments',
+		title: 'Checkout for 400K+ viewers',
+		context: 'Video streaming platform',
+		role: 'Software Engineer',
+		period: '2020 — 2021',
+		summary:
+			'Payment and subscription flows for a streaming platform, where every checkout bug costs real money.',
+		tags: ['Payments', 'Adyen', 'E2E testing'],
+		color: 'lilac',
+		challenge:
+			'Checkout is where a streaming business earns its money — and where a bug hurts the most. With more than 400,000 customers, payment flows had to hold up in every edge case.',
+		highlights: [
+			'Payment and checkout functionality integrated with Adyen',
+			'User-facing subscription workflows and account features',
+			'Investigated production issues and hardened critical payment flows',
+			'Maintained an automated E2E suite with more than 95% coverage'
+		],
+		stack: ['JavaScript', 'Adyen', 'E2E tests'],
+		metrics: [
+			{ value: '400K+', label: 'customers paying through the flows' },
+			{ value: '95%+', label: 'end-to-end test coverage' }
+		]
+	},
+	{
+		slug: 'room-booking',
+		title: 'Real-time room booking',
+		context: 'Conference room booking platform',
+		role: 'Software Engineer',
+		period: '2019 — 2020',
+		summary:
+			'Interactive scheduling timelines where room availability updates live, so two people never grab the same slot.',
+		tags: ['Scheduling', 'Real-time', 'Interactive UI'],
+		color: 'sand',
+		challenge:
+			'Meeting rooms are a shared resource, and double bookings are the whole problem. The interface had to show what is free right now and stay accurate while everyone books at once.',
+		highlights: [
+			'Interactive scheduling timelines and booking workflows',
+			'Real-time room availability updates',
+			'Reservation management for everyday scheduling',
+			'Frontend components integrated with backend APIs and application state'
+		],
+		stack: ['JavaScript', 'REST APIs', 'Real-time updates'],
+		metrics: [
+			{ value: 'Live', label: 'availability without a page refresh' },
+			{ value: '2019', label: 'where the 7 years started' }
+		]
 	}
 ];
 

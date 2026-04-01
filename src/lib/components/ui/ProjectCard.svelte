@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
-	import type { CardColor, Project } from '#lib/types.js';
-	import { pad } from '#lib/utils/index.js';
+	import type { Project } from '#lib/types.js';
+	import { cardBackground, pad } from '#lib/utils/index.js';
 
 	interface Props {
 		project: Project;
@@ -10,19 +10,13 @@
 	}
 
 	let { project, index, total }: Props = $props();
-
-	const background: Record<CardColor, string> = {
-		lime: 'bg-lime',
-		coral: 'bg-coral',
-		sky: 'bg-sky'
-	};
 </script>
 
 <a
 	href={resolve('/work/[slug]', { slug: project.slug })}
-	class="group relative flex h-full flex-col overflow-hidden rounded-card p-6 text-on-card md:p-10 {background[
+	class="group relative flex h-full flex-col overflow-hidden rounded-card p-6 text-on-card md:p-10 {cardBackground[
 		project.color
-	]} {project.featured ? 'min-h-[30rem] md:min-h-[34rem]' : 'min-h-[26rem]'}"
+	]} {project.featured ? 'min-h-120 md:min-h-136' : 'min-h-104'}"
 >
 	<!-- Decorative rings: drift and grow on hover -->
 	<span

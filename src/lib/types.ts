@@ -1,6 +1,6 @@
 import type { ResolvedPathname } from '$app/types';
 
-export type CardColor = 'lime' | 'coral' | 'sky';
+export type CardColor = 'lime' | 'coral' | 'sky' | 'lilac' | 'sand';
 
 export interface Metric {
 	value: string;

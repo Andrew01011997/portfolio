@@ -68,7 +68,9 @@
 	/* Type scale (fluid display sizes, fixed text sizes) */
 	/* "I build complex interfaces that feel simple." — the longest phrase is ~8.4em wide,
 	   so the max must stay under (82rem container − gutters) / 8.4 ≈ 147px */
-	--text-hero: clamp(2.25rem, 10vw, 8.75rem);
+	/* Sized by the hero's own width (it is an @container), and by viewport height for
+	   short ultrawide screens. 11cqi keeps the longest phrase (~8.4em) at ~92% of the line. */
+	--text-hero: clamp(2.25rem, min(11cqi, 17svh), 9rem);
 	--text-hero--line-height: 0.95;
 	--text-hero--letter-spacing: -0.05em;
 
@@ -107,6 +109,9 @@
 
 	/* Layout */
 	--container-page: 82rem;
+	/* Large desktops and ultrawides get a wider column instead of huge side margins */
+	--container-wide: 112rem;
+	--breakpoint-3xl: 120rem;
 	--spacing-gutter: clamp(1.25rem, 4vw, 2.5rem);
 	--spacing-section: clamp(6rem, 12vw, 11rem);
 
@@ -122,6 +127,8 @@
 
 	--animate-marquee: marquee 40s linear infinite;
 	--animate-orbit: orbit 24s linear infinite;
+	--animate-orbit-slow: orbit 90s linear infinite;
+	--animate-orbit-reverse: orbit 90s linear infinite reverse;
 	--animate-pulse-dot: pulse-dot 2.4s var(--ease-out-quart) infinite;
 	/* Page-load entrance; stagger with style="animation-delay: …" */
 	--animate-rise: rise 0.9s var(--ease-out-expo) both;
@@ -225,7 +232,7 @@
 
 /* Centered page column with side gutters */
 @utility container-page {
-	@apply mx-auto w-full max-w-(--container-page) px-gutter;
+	@apply mx-auto w-full max-w-page px-gutter 3xl:max-w-wide;
 }
 
 /* Vertical rhythm between sections */

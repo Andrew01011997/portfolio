@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { prefersReducedMotion } from 'svelte/motion';
+	import { parallax } from '#lib/attachments/parallax.js';
 	import { heroPhrases, site } from '#lib/data/site.js';
 	import { stagger } from '#lib/motion/index.js';
 	import { fadeAfter, flip } from '#lib/motion/transitions.js';
@@ -28,29 +29,79 @@
 		const id = setInterval(() => (index = (index + 1) % heroPhrases.length), INTERVAL);
 		return () => clearInterval(id);
 	});
+
+	// Stack labels that drift around the outer ring on very wide screens
+	const orbitLabels = ['React', 'TypeScript', 'Svelte', 'Node.js', 'NestJS', 'LLMs'];
 </script>
 
-<section class="relative flex min-h-[min(calc(100svh-4rem),64rem)] flex-col overflow-hidden">
-	<!-- Orbit rings -->
+<section class="relative flex min-h-[min(calc(100svh-4rem),80rem)] flex-col overflow-hidden">
 	<div
-		aria-hidden="true"
-		class="pointer-events-none absolute top-[8%] -right-72 size-144 md:-right-40 lg:-right-16"
-	>
-		<span class="absolute inset-0 rounded-full border border-line"></span>
-		<span class="absolute inset-[12%] rounded-full border border-line"></span>
-		<span class="absolute inset-0 animate-orbit">
-			<span
-				class="absolute top-[14.6%] left-[14.6%] size-3 -translate-1/2 animate-pulse-dot rounded-full bg-accent text-accent"
-			></span>
-		</span>
-	</div>
-
-	<div
-		class="relative container-page flex flex-1 flex-col justify-center py-20"
+		class="@container relative isolate container-page flex flex-1 flex-col justify-center py-20"
 		role="presentation"
 		onpointerenter={() => (paused = true)}
 		onpointerleave={() => (paused = false)}
 	>
+		<!-- Orbit rings: anchored to the content column, so they stay next to the heading on any width -->
+		<div
+			aria-hidden="true"
+			class="pointer-events-none absolute top-1/2 right-[-8%] -z-10 aspect-square w-[max(22rem,44cqi)] max-w-[56rem] -translate-y-1/2 3xl:right-[3%]"
+			{@attach parallax}
+		>
+			<!-- Each layer drifts a different amount with the pointer for depth -->
+			<div
+				class="absolute inset-0 transition-transform duration-[1.2s] ease-out-expo"
+				style="transform: translate(calc(var(--px, 0) * -14px), calc(var(--py, 0) * -14px))"
+			>
+				<span class="absolute inset-0 rounded-full border border-line"></span>
+				<span class="absolute inset-0 animate-orbit">
+					<span
+						class="absolute top-[14.6%] left-[14.6%] size-3 -translate-1/2 animate-pulse-dot rounded-full bg-accent text-accent"
+					></span>
+				</span>
+			</div>
+
+			<div
+				class="absolute inset-[12%] transition-transform duration-[1.2s] ease-out-expo"
+				style="transform: translate(calc(var(--px, 0) * -28px), calc(var(--py, 0) * -28px))"
+			>
+				<span class="absolute inset-0 rounded-full border border-line"></span>
+				<span class="absolute inset-0 hidden animate-orbit-reverse 3xl:block">
+					<span class="absolute top-full left-1/2 size-2 -translate-1/2 rounded-full bg-ink-subtle"
+					></span>
+				</span>
+			</div>
+
+			<!-- Wide screens only: dashed outer ring with the stack slowly circling on it.
+			     The mask fades its left side, where it would run behind the heading; the layer is
+			     larger than the ring (-24% vs -14%) so labels sticking out past the ring aren't clipped. -->
+			<div
+				class="absolute inset-[-24%] hidden mask-l-from-50% mask-l-to-85% transition-transform duration-[1.2s] ease-out-expo 3xl:block"
+				style="transform: translate(calc(var(--px, 0) * -6px), calc(var(--py, 0) * -6px))"
+			>
+				<!-- 10% of the 148% layer brings the ring back to -14% of the orbit -->
+				<span
+					class="absolute inset-[6.76%] animate-orbit-reverse rounded-full border border-dashed border-line"
+				></span>
+				<span class="absolute inset-[6.76%] animate-orbit-slow">
+					{#each orbitLabels as label, i (label)}
+						<span
+							class="absolute inset-0"
+							style="transform: rotate({(360 / orbitLabels.length) * i}deg)"
+						>
+							<span
+								class="absolute top-1/2 right-0"
+								style="transform: translate(50%, -50%) rotate({(-360 / orbitLabels.length) * i}deg)"
+							>
+								<span class="block animate-orbit-reverse">
+									<span class="chip bg-bg">{label}</span>
+								</span>
+							</span>
+						</span>
+					{/each}
+				</span>
+			</div>
+		</div>
+
 		<p class="flex animate-rise items-center gap-3 eyebrow">
 			<span class="size-2 animate-pulse-dot rounded-full bg-success text-success"></span>
 			{site.status}

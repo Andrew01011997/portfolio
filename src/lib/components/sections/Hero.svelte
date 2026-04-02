@@ -57,12 +57,12 @@
 		</p>
 
 		<h1 class="mt-8 text-hero">
-			<span class="block animate-rise" style="animation-delay: 150ms">I build</span>
+			<span class="block animate-rise" style="animation-delay: 80ms">I build</span>
 			<span class="sr-only">{current.phrase}</span>
 			<!-- Phrases share one grid cell, so the line keeps its place while letters flip -->
 			<span
 				class="grid animate-rise text-accent"
-				style="animation-delay: {150 + stagger(1, 110)}ms"
+				style="animation-delay: {80 + stagger(1, 90)}ms"
 				aria-hidden="true"
 			>
 				{#each [current] as item (item.phrase)}
@@ -89,14 +89,14 @@
 					</span>
 				{/each}
 			</span>
-			<span class="block animate-rise" style="animation-delay: {150 + stagger(2, 110)}ms">
+			<span class="block animate-rise" style="animation-delay: {80 + stagger(2, 90)}ms">
 				that feel simple.
 			</span>
 		</h1>
 
 		<div
 			class="mt-12 flex animate-rise items-end justify-between gap-8"
-			style="animation-delay: 550ms"
+			style="animation-delay: 380ms"
 		>
 			<div class="grid min-h-[4.65em] max-w-sm text-small text-ink-muted">
 				{#each [current] as item (item.phrase)}

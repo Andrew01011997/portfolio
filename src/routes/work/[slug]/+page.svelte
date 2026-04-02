@@ -58,7 +58,7 @@
 
 		<section class="grid gap-10 py-section md:grid-cols-2 md:gap-16">
 			<h2 class="text-h4" {@attach reveal()}>The challenge</h2>
-			<p class="text-lead text-ink-muted" {@attach reveal({ delay: 120 })}>{project.challenge}</p>
+			<p class="text-lead text-ink-muted" {@attach reveal()}>{project.challenge}</p>
 		</section>
 
 		<section class="grid gap-10 border-t border-line py-section md:grid-cols-2 md:gap-16">

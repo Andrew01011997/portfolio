@@ -3,7 +3,6 @@
 	import { liveProjects } from '#lib/data/live-projects.js';
 	import { projects } from '#lib/data/projects.js';
 	import { site } from '#lib/data/site.js';
-	import { stagger } from '#lib/motion/index.js';
 	import LiveProjectCard from '#lib/components/ui/LiveProjectCard.svelte';
 	import ProjectGrid from '#lib/components/ui/ProjectGrid.svelte';
 	import SectionHeading from '#lib/components/ui/SectionHeading.svelte';
@@ -53,8 +52,8 @@
 			Live on<br />the web.
 		</SectionHeading>
 		<ul class="mt-16 grid gap-4 md:grid-cols-2">
-			{#each liveProjects as project, i (project.url)}
-				<li {@attach reveal({ delay: stagger(i % 2) })}>
+			{#each liveProjects as project (project.url)}
+				<li {@attach reveal()}>
 					<LiveProjectCard {project} />
 				</li>
 			{/each}

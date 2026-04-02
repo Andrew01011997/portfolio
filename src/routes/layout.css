@@ -124,7 +124,7 @@
 	--animate-orbit: orbit 24s linear infinite;
 	--animate-pulse-dot: pulse-dot 2.4s var(--ease-out-quart) infinite;
 	/* Page-load entrance; stagger with style="animation-delay: …" */
-	--animate-rise: rise 1.1s var(--ease-out-expo) both;
+	--animate-rise: rise 0.9s var(--ease-out-expo) both;
 
 	@keyframes rise {
 		from {

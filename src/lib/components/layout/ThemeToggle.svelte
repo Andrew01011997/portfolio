@@ -8,6 +8,9 @@
 <button
 	class="chip cursor-pointer gap-2 transition-colors hover:text-ink"
 	onclick={() => theme.toggle()}
+	aria-label="Switch to {theme.current === 'dark' ? 'light' : 'dark'} theme"
 >
-	{theme.current === 'dark' ? 'Light' : 'Dark'}
+	<!-- Label follows the theme attribute via CSS, so it is right before hydration too -->
+	<span class="dark:hidden">Dark</span>
+	<span class="hidden dark:inline">Light</span>
 </button>

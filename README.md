@@ -68,7 +68,6 @@ src/
     └── design-system/        token preview page
 ```
 
-
 ## Decisions
 
 ### Design system in CSS, not in components

@@ -18,6 +18,9 @@ export default defineConfig({
 			adapter: adapter({ fallback: '404.html' }),
 			// Pages serves the site from /<repo>; the deploy workflow sets BASE_PATH=/portfolio
 			paths: { base: (process.env.BASE_PATH ?? '') as '' | `/${string}` },
+			// The whole stylesheet is small, so it ships inside the HTML instead of as a
+			// render-blocking request
+			inlineStyleThreshold: 64 * 1024,
 			experimental: { remoteFunctions: true }
 		})
 	]

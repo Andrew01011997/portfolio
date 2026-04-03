@@ -1,6 +1,13 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
 
+/* Self-hosted fonts — no third-party request chain. Each file is split by unicode-range,
+   so browsers only download the subsets the page uses (latin). */
+@import '@fontsource-variable/geist/wght.css';
+@import '@fontsource-variable/dm-sans/wght.css';
+@import '@fontsource/dm-mono/latin-400.css';
+@import '@fontsource/dm-mono/latin-500.css';
+
 /* Theme switching: <html data-theme="dark"> */
 @custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
 
@@ -61,8 +68,8 @@
 	--color-on-card: #20251f;
 
 	/* Fonts */
-	--font-display: 'Geist', 'DM Sans', ui-sans-serif, system-ui, sans-serif;
-	--font-sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+	--font-display: 'Geist Variable', 'DM Sans Variable', ui-sans-serif, system-ui, sans-serif;
+	--font-sans: 'DM Sans Variable', ui-sans-serif, system-ui, sans-serif;
 	--font-mono: 'DM Mono', ui-monospace, 'SFMono-Regular', monospace;
 
 	/* Type scale (fluid display sizes, fixed text sizes) */

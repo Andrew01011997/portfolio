@@ -11,7 +11,7 @@
 			label="Where the work happens"
 			aside="Enterprise platforms, banking, research and streaming — 2019 to now."
 		>
-			In good<br />company.
+			In good company.
 		</SectionHeading>
 
 		<ol class="mt-16 border-b border-line">

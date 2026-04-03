@@ -14,7 +14,7 @@
 			label="Selected work"
 			aside="Products are under NDA, so the case studies focus on the problem and the approach."
 		>
-			Built to<br />scale.
+			Built to scale.
 		</SectionHeading>
 
 		<div class="mt-16">

@@ -19,7 +19,7 @@
 <header class="container-page pt-16 pb-section md:pt-24">
 	<p class="animate-rise eyebrow">Work · 2019 — 2026</p>
 	<h1 class="mt-8 animate-rise text-h1" style="animation-delay: 100ms">
-		Things I've<br /><span class="text-accent">shipped.</span>
+		Things I've <span class="text-accent">shipped.</span>
 	</h1>
 	<p class="mt-10 max-w-xl animate-rise text-lead text-ink-muted" style="animation-delay: 200ms">
 		Case studies from enterprise and product teams, plus smaller projects you can open in a browser
@@ -34,7 +34,7 @@
 			label="Case studies"
 			aside="Products are under NDA, so the case studies focus on the problem and the approach."
 		>
-			Built to<br />scale.
+			Built to scale.
 		</SectionHeading>
 		<div class="mt-16">
 			<ProjectGrid {projects} />
@@ -49,7 +49,7 @@
 			label="Live projects"
 			aside="Smaller public products — frontend or full-stack, all running today."
 		>
-			Live on<br />the web.
+			Live on the web.
 		</SectionHeading>
 		<ul class="mt-16 grid gap-4 md:grid-cols-2">
 			{#each liveProjects as project (project.url)}
